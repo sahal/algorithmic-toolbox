@@ -23,6 +23,7 @@ RUN yum --noplugins -y install \
 
 RUN mkdir "${dir:-unset}"/assignments
 COPY assignments/* "${dir:-unset}"/assignments/
+RUN chown -R "${user:-unset}":"${group:-unset}" "${dir:-unset}"/assignments/
 
 VOLUME "${dir:-unset}"
 USER "${user:-unset}"
