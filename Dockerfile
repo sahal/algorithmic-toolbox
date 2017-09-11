@@ -18,10 +18,11 @@ RUN yum --noplugins -y install \
 
 RUN yum --noplugins -y install \
       python36u \
+      python36u-pip \
       && yum clean all
 
 RUN mkdir "${dir:-unset}"/assignments
-COPY assignments/* "${dir:-unset}"/assignments
+COPY assignments/* "${dir:-unset}"/assignments/
 
 VOLUME "${dir:-unset}"
 USER "${user:-unset}"
