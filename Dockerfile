@@ -12,13 +12,16 @@ RUN /sbin/groupadd -g "${gid:-unset}" "${group:-unset}"
 RUN /sbin/useradd -c "${user:-unset}" -d "${dir:-unset}" -g "${gid:-unset}" -m "${user:-unset}"
 
 RUN yum --noplugins -y install \
-      epel-relese \
+      epel-release \
       https://centos7.iuscommunity.org/ius-release.rpm \
       && yum clean all
 
 RUN yum --noplugins -y install \
       python36u \
       && yum clean all
+
+RUN mkdir "${dir:-unset}"/assignments
+COPY assignments/* "${dir:-unset}"/assignments
 
 VOLUME "${dir:-unset}"
 USER "${user:-unset}"
